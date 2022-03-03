@@ -1,9 +1,11 @@
 <!-- Parse internal links, external links, transclusions etc and manipuate the content to reflect it accordingly -->
 {%- if page.content-type == "post" or page.content-type == "notes" -%}
 <div class="dates">
-    <p>Created: {{ page.date | date: '%B-%d-%Y' }}</p>
-    {%- if page.updated -%}
-    <p>Updated: {{ page.updated | date: '%B-%d-%Y' }}</p>
+    {% assign created_date = page.date | date_to_long_string %}
+    {% assign updated_date = page.updated | date_to_long_string %}
+    <p>Created: {{ created_date }}</p>
+    {%- if created_date != updated_date -%}
+    <p>Updated: {{ updated_date }}</p>
     {%- endif -%}
 </div>
 <ul class="tags">

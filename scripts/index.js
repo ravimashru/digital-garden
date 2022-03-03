@@ -64,6 +64,13 @@ async function run() {
    */
   processedMarkdownFiles.forEach(file => {
     const createdDate = file.data.created.toISOString().split("T")[0];
+    file.data.created = createdDate
+    if (file.data.updated) {
+      file.data.updated = file.data.updated.toISOString().split("T")[0];
+    } else {
+      file.data.updated = file.data.created;
+    }
+
     const slug = slugify(file.data.slug || file.data.title);
     const fileName = createdDate + "-" + slug.toLowerCase() + ".md";
     

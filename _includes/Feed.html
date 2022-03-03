@@ -32,7 +32,9 @@
 {%- endcomment -%}
 
 {%- if page.permalink == "/" -%}
-    {%- for item in site.notes -%}
+    {% assign all_items = site.posts | concat: site.notes | sort: "updated" | reverse %}
+
+    {%- for item in all_items limit:5 -%}
         <div class="feed-title-excerpt-block disable-select" data-url="{{site.url}}{{item.url}}">
             <a href="{{item.url}}" style="text-decoration: none; color: #555555;">
             {%- if item.status == "Ongoing" or item.status == "ongoing" -%}

@@ -19,8 +19,8 @@ content-type: eg
 
 <main>
     
-    {% assign all_items = site.posts | concat: site.notes %}
-    {% assign items_by_day = all_items | group_by_exp: "item", "item.updated | default: item.date | date: '%d-%B-%Y'" %}
+    {% assign all_items = site.posts | concat: site.notes | sort: "updated" | reverse %}
+    {% assign items_by_day = all_items | group_by_exp: "item", "item.updated | default: item.date | date_to_long_string" %}
 
     {% for day in items_by_day %}
       <h3 id="{{ day.name }}">{{ day.name }}</h3>
