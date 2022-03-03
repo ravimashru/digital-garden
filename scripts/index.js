@@ -23,8 +23,8 @@ async function run() {
   const markdownFilePaths = vaultFiles.filter(fileName => fileName.endsWith(".md"));
   
   const markdownFiles = markdownFilePaths
-                          .map(filePath => matter.read(path.join(OBSIDIAN_VAULT_PATH, filePath)))
-                          .filter(file => file.data.publish);
+                          .map(filePath => ({filePath, matter: matter.read(path.join(OBSIDIAN_VAULT_PATH, filePath))}))
+                          .filter(file => file.matter.data.publish);
   
   /**
    * Step 3: Process note contents
@@ -37,23 +37,27 @@ async function run() {
    */
 
   const processedMarkdownFiles = markdownFiles.map(file => {
-    file.content = file.content.split("%%ENDNOTE%%")[0];
+    file.matter.content = file.matter.content.split("%%ENDNOTE%%")[0];
 
-    const documentTags = new Set(file.data.tags);
-    const inlineTags = new Set(Array.from(file.content.matchAll(/#([a-z-_/])+/g)).map(e => e[0]));
+    const documentTags = new Set(file.matter.data.tags);
+    const inlineTags = new Set(Array.from(file.matter.content.matchAll(/#([a-z-_/])+/g)).map(e => e[0]));
     for (const match of inlineTags) {
-      file.content = file.content.replaceAll(match, `<a href="/tags/${match}" class="tag">${match}</a>`);
+      file.matter.content = file.matter.content.replaceAll(match, `<a href="/tags/${match}" class="tag">${match}</a>`);
       documentTags.add(match.substring(1));
     }
 
-    file.data.tags = Array.from(documentTags);
+    file.matter.data.tags = Array.from(documentTags);
 
-    const images = new Set(Array.from(file.content.matchAll(/!(\[\[.*\]\])/g)).map(e => e[0]));
+    const images = new Set(Array.from(file.matter.content.matchAll(/!(\[\[.*\]\])/g)).map(e => e[0]));
     for (const match of images) {
       const imageName = match.substring(3, match.length-2);
       fs.copyFileSync(path.join(OBSIDIAN_VAULT_PATH, MEDIA_FOLDER, imageName), path.join("assets", "img", imageName));
-      file.content = file.content.replaceAll(match, `<img src="/assets/img/${imageName}" />`);
+      file.matter.content = file.matter.content.replaceAll(match, `<img src="/assets/img/${imageName}" />`);
     }
+
+    const fileName = file.filePath.split("/").pop();
+    const fileNameWithoutExtension = fileName.split(".")[0];
+    file.matter.data.fileName = fileNameWithoutExtension;
 
     return file;
   });
@@ -63,18 +67,18 @@ async function run() {
    * - File name: created date (default if not specified?) + slug (from title or slug frontmatter)
    */
   processedMarkdownFiles.forEach(file => {
-    const createdDate = file.data.created.toISOString().split("T")[0];
-    file.data.created = createdDate
-    if (file.data.updated) {
-      file.data.updated = file.data.updated.toISOString().split("T")[0];
+    const createdDate = file.matter.data.created.toISOString().split("T")[0];
+    file.matter.data.created = createdDate
+    if (file.matter.data.updated) {
+      file.matter.data.updated = file.matter.data.updated.toISOString().split("T")[0];
     } else {
-      file.data.updated = file.data.created;
+      file.matter.data.updated = file.matter.data.created;
     }
 
-    const slug = slugify(file.data.slug || file.data.title);
+    const slug = slugify(file.matter.data.slug || file.matter.data.title);
     const fileName = createdDate + "-" + slug.toLowerCase() + ".md";
     
-    fs.writeFileSync(path.join("_notes", fileName), matter.stringify(file));
+    fs.writeFileSync(path.join("_notes", fileName), matter.stringify(file.matter));
 
   });
 }
