@@ -32,7 +32,7 @@
 {%- endcomment -%}
 
 {%- if page.permalink == "/" -%}
-    {%- for item in site.posts -%}
+    {%- for item in site.notes -%}
         <div class="feed-title-excerpt-block disable-select" data-url="{{site.url}}{{item.url}}">
             <a href="{{item.url}}" style="text-decoration: none; color: #555555;">
             {%- if item.status == "Ongoing" or item.status == "ongoing" -%}
@@ -46,8 +46,5 @@
             <p class="feed-excerpt">{{ item.content | strip_html | strip | escape | truncate: 200}}</p>
             </a>
         </div>
-    {%- endfor -%}
-    {%- for item in site.notes -%}
-        <a href="{{ item.url }}">{{ item.title }}</a>
     {%- endfor -%}
 {%- endif -%}

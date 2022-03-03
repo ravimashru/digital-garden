@@ -1,0 +1,26 @@
+{
+  "name": "digital-garden",
+  "version": "0.0.1",
+  "description": "My digital garden",
+  "scripts": {
+    "start": "node scripts/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravimashru/digital-garden.git"
+  },
+  "keywords": [
+    "digital-garden"
+  ],
+  "author": "ravimashru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ravimashru/digital-garden/issues"
+  },
+  "homepage": "https://github.com/ravimashru/digital-garden#readme",
+  "dependencies": {
+    "glob": "^7.2.0",
+    "gray-matter": "^4.0.3",
+    "slugify": "^1.6.5"
+  }
+}
