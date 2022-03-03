@@ -34,11 +34,6 @@ async function run() {
    * - Handle images
    *      - Copy images used to assets/img folder
    *      - Transform ![[...]] to <img src="..." />
-   * - Handle wiki links
-   *      - [[...]]
-   *      - [[...|alias]]
-   *      - [[...#header]]
-   *      - [[...#header|alias]]
    */
 
   const processedMarkdownFiles = markdownFiles; // TODO: step 3
