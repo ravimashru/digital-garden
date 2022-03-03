@@ -48,6 +48,13 @@ async function run() {
 
     file.data.tags = Array.from(documentTags);
 
+    const images = new Set(Array.from(file.content.matchAll(/!(\[\[.*\]\])/g)).map(e => e[0]));
+    for (const match of images) {
+      const imageName = match.substring(3, match.length-2);
+      fs.copyFileSync(path.join(OBSIDIAN_VAULT_PATH, MEDIA_FOLDER, imageName), path.join("assets", "img", imageName));
+      file.content = file.content.replaceAll(match, `<img src="/assets/img/${imageName}" />`);
+    }
+
     return file;
   });
 
