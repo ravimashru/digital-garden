@@ -31,7 +31,6 @@ async function run() {
    *
    * - Remove part of note that shouldn't be published (e.g. %%ENDNOTE%% comment)
    * - Transform inline tags to proper links, add them to frontmatter.
-   * - Transform "tags" frontmatter into the format expected by Jekyll (i.e. space separated list of tags)
    * - Handle images
    *      - Copy images used to assets/img folder
    *      - Transform ![[...]] to <img src="..." />
