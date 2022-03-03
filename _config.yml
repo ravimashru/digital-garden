@@ -20,7 +20,7 @@
 
 
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://simply-jekyll.netlify.app/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://notes.ravimashru.dev/" # the base hostname & protocol for your site, e.g. http://example.com
 
 #######################################################################
 # Settings related to the Header and your About page go here,such as 
@@ -28,14 +28,14 @@ url: "https://simply-jekyll.netlify.app/" # the base hostname & protocol for you
 # your social media links etc
 #######################################################################
 
-heading: Simply Jekyll
+heading: Ravi Mashru
 subheading: # subheading won't work without a tagline, 
           # tagline is mandatory if you want the 
           # suheading to appear. The reason is
           # having a heading and a subheading looks 
           # ridiculous.
   enabled: true
-  name: Notes and Thoughts
+  name: Digital Garden
 tagline: # subheading won't work without a tagline, 
          # tagline is mandatory if you want the 
          # suheading to appear. The reason is
@@ -45,28 +45,28 @@ tagline: # subheading won't work without a tagline,
          # the subheading to support the main heading
          # which in this case is 'Knowledge Continuum'
   enabled: true
-  name: An experiment to spark conversations
+  name: A collection of continuously evolving notes and ideas
 copyright: 
-  year: 2020
-  msg: Raghuveer S # This is a mandatory attribute for copyright to be displayed
+  year: 2022
+  msg: Ravi Mashru # This is a mandatory attribute for copyright to be displayed
 
 user:
-  display: true # setting it to false will remove the header image and bio
+  display: false # setting it to false will remove the header image and bio
                 # Note that user settings come wholesale, it does not have the 
                 # granular enabling or disabling as with the 'preferences'
                 # or the site-wide settings.
-  name: Raghuveer S
-  bio: Programmer ∪ Writer. Interested in constraints and correspondences.
-  email: raghu-veer@outlook.com
+  name: Ravi Mashru
+  bio: null
+  email: me@ravimashru.dev
   photo: /assets/img/profile.png
   alt_link: rgvr.me
   social: # just leave the field blank or type in null, if you don't have a
           # particular social media account and it won't appear
     enabled: false  # turn this to true
-    twitter: rgvrme
-    github: rgvr 
-    youtube: rgvr 
-    linkedin: rgvr  
+    twitter: ravimashru
+    github: ravimashru
+    youtube: null
+    linkedin: ravimashru  
     twitch: null
     facebook: null 
     instagram: null
@@ -131,7 +131,7 @@ plugins:
 disqus:
     # Leave shortname blank to disable comments site-wide.
     # Disable comments for any post by adding `comments: false` to that post's YAML Front Matter.
-    shortname: rgvr
+    shortname: ravimashru
 
 markdown: kramdown
 
@@ -145,6 +145,10 @@ kramdown:
 sass:
   style: compressed
 
+collections:
+  notes:
+    output: true
+
 defaults:
   - scope:
       path: ""
@@ -153,6 +157,13 @@ defaults:
       layout: Post
       permalink: /posts/:title
       content-type: post
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: Post
+      permalink: /notes/:title
+      content-type: notes
 
 
 # Exclude from processing.

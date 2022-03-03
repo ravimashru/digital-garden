@@ -825,6 +825,14 @@ hr {
     font-size: 15px;
 }
 
+.dates p {
+    margin: 0;
+}
+
+.dates p:last-of-type {
+    margin-bottom: 12px;
+}
+
 .tags {
     list-style: none;
     margin: 0;
