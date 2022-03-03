@@ -36,13 +36,16 @@ async function run() {
    *      - Transform ![[...]] to <img src="..." />
    */
 
-  const processedMarkdownFiles = markdownFiles; // TODO: step 3
+  const processedMarkdownFiles = markdownFiles.map(file => {
+    file.content = file.content.split("%%ENDNOTE%%")[0];
+    return file;
+  });
 
   /**
    * Step 4: Write processed notes to _notes folder
    * - File name: created date (default if not specified?) + slug (from title or slug frontmatter)
    */
-  processedMarkdownFiles.forEach(async file => {
+  processedMarkdownFiles.forEach(file => {
     const createdDate = file.data.created.toISOString().split("T")[0];
     const slug = slugify(file.data.slug || file.data.title);
     const fileName = createdDate + "-" + slug.toLowerCase() + ".md";
