@@ -38,7 +38,7 @@
                 {%- if external_link[1] == nil -%}
                     {%- assign result_posts = site.posts | where: 'title',itemparts[0] -%}
                     {%- assign result_pages = site.pages | where: 'title',itemparts[0] -%}
-                    {%- assign result_notes = site.notes | where: 'title',itemparts[0] -%}
+                    {%- assign result_notes = site.notes | where: 'fileName',itemparts[0] -%}
                     {%- assign internal_links = internal_links | append: link_joiner_delimiter | append: internal_link -%}
                     {%- assign internal_urls = internal_urls | append: link_joiner_delimiter | append: result_posts[0].url | append: result_pages[0].url | append: result_notes[0].url -%}
                 {%- else -%}
@@ -65,7 +65,7 @@
             {%- else -%}
                     {%- assign excerpt_soure = site.posts | where: 'title',title -%}
                     {%- if excerpt_soure == empty -%}
-                        {%- assign excerpt_soure = site.notes | where: 'title',title -%}
+                        {%- assign excerpt_soure = site.notes | where: 'fileName',title -%}
                     {%- endif -%}
 
                     {%- assign excerpt = excerpt_soure[0].content | markdownify | strip_html | truncate: 200 | newline_to_br -%}
