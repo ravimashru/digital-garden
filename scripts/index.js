@@ -38,6 +38,16 @@ async function run() {
 
   const processedMarkdownFiles = markdownFiles.map(file => {
     file.content = file.content.split("%%ENDNOTE%%")[0];
+
+    const documentTags = new Set(file.data.tags);
+    const inlineTags = file.content.matchAll(/#([a-z-_/])+/g);
+    for (const match of inlineTags) {
+      file.content = file.content.replaceAll(match[0], `<a href="/tags/${match[0]}" class="tag">${match[0]}</a>`);
+      documentTags.add(match[0].substring(1));
+    }
+
+    file.data.tags = Array.from(documentTags);
+
     return file;
   });
 
