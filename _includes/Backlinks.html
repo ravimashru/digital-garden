@@ -31,8 +31,10 @@
 
 <!-- Add backlinks to the current page --> 
 {%- assign link_count = 0 -%}
-{%- assign wiki_link_title = '[' | append: page.title | append: ']' -%}
-{%- for note in site.posts -%}
+{%- assign wiki_link_title = '[[' | append: page.fileName | append: ']]' -%}
+
+{% assign all_items = site.posts | concat: site.notes %}
+{%- for note in all_items %}
         {%- if note.url != page.url -%}
             {%- if note.content contains wiki_link_title -%}
                 {%- assign link_count = link_count | plus:1 -%}
@@ -47,15 +49,14 @@
     {%- endif -%}
 {%- endfor -%}
 {%- if link_count > 0 -%}
-{%- assign wiki_link_title = '[' | append: page.title | append: ']' -%}
 {%- assign display_class = 'hide' -%}
 {%- if site.preferences.backlinks.enabled -%}
 {%- assign display_class = 'show' -%}
 {%- endif -%}
 <div class="related {{display_class}}" id="jekyll-seamless-backlinks">
-    <h4 class="medium-small">Links to this note</h4>
+    <h4 class="small-medium">Links to this note</h4>
     <div class="related-wrapper">
-        {%- for note in site.posts -%}
+        {%- for note in all_items %}
         {%- if note.url != page.url -%}
             {%- if note.content contains wiki_link_title -%}
             <div class="related-group"><a href="{{note.url}}">

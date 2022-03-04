@@ -4,7 +4,8 @@ permalink: /assets/js/SearchData.json
 
 {
   {%- assign i = 0 -%}
-  {%- for post in site.posts -%}
+  {% assign all_items = site.posts | concat: site.notes %}
+  {%- for post in all_items -%}
 
     "{{ i }}": {
        "doc":  {{ post.title | strip_html | escape | jsonify }},

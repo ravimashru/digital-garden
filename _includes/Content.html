@@ -1,76 +1,130 @@
 <!-- Parse internal links, external links, transclusions etc and manipuate the content to reflect it accordingly -->
-<p>{{ page.content-type }}</p>
-{%- if page.content-type == "post" -%}
-<div class="dates">
-    <p>Created: {{ page.date | date: '%B-%d-%Y' }}</p>
-    {%- if page.updated -%}
-    <p>Updated: {{ page.updated | date: '%B-%d-%Y' }}</p>
-    {%- endif -%}
-</div>
-<ul class="tags">
-    {%- if page.status != nil and page.status != empty -%}
-    <li><a href="javascript:void(0)" class="tag"><b>Status:</b> <i>{{page.status | capitalize}}</i></a></li>
-    {%- endif -%}
-    <!-- Loop through page categories and print them in tags -->
-    {%- for tag in page.tags -%}
+{%- if page.content-type == "post" or page.content-type == "notes" -%}
+<div class="metadata-container">
+    <ul class="tags">
+        {%- if page.status != nil and page.status != empty -%}
+        <li><a href="javascript:void(0)" class="tag"><b>Status:</b> <i>{{page.status | capitalize}}</i></a></li>
+        {%- endif -%}
+        <!-- Loop through page categories and print them in tags -->
+        {%- for tag in page.tags -%}
         {%- if tag == 'Favorite' -%}
         <li><a href="/favorites/" class="tag">{{ tag }}</a></li>
         {%- else -%}
         <li><a href="/tags/#{{ tag }}" class="tag">{{ tag }}</a></li>
         {%- endif -%}
-    {%- endfor -%}
-</ul>
+        {%- endfor -%}
+    </ul>
+    <div class="dates">
+        {% assign created_date = page.date | date_to_long_string %}
+        {% assign updated_date = page.updated | date_to_long_string %}
+        <p>Created: {{ created_date }}</p>
+        {%- if updated_date != nil and created_date != updated_date -%}
+        <p>Updated: {{ updated_date }}</p>
+        {%- endif -%}
+    </div>
+</div>
 {%- endif -%}
 <div class="content">
-    {%- if site.preferences.wiki_style_link.enabled -%}
-        {%- assign content_array = content | split:'[[' -%}
-        {%- assign external_link_delimiter = '::' -%}
 
+    {%- if site.preferences.wiki_style_link.enabled -%}
+        {%- assign external_link_delimiter = '::' -%}
+        {%- assign internal_link_delimiter = '|' -%}
         {%- assign link_joiner_delimiter = '$@' -%}
+
+        {%- assign content_array = content | split: '![[' -%}
+        {%- for item in content_array -%}
+            {%- if forloop.index > 1 -%}
+                {% assign item_parts = item | split: ']]' %}
+                {% assign file_name = item_parts[0] %}
+                {% assign embedded_note_names = embedded_note_names | append: link_joiner_delimiter | append: file_name %}
+            {%- endif -%}
+        {%- endfor -%}
+
+        {%- assign content_array = content | split:'[[' -%}
         {%- for item in content_array -%}
             {%- if forloop.index > 1 -%}
                 {%- assign itemparts = item | split:']]' -%}
                 {%- assign internal_link = itemparts[0] -%}
+
+                {%- assign link_parts = internal_link | split: internal_link_delimiter -%}
+                {%- assign lookup_text = link_parts[0] -%}
+
+                {%- assign result_posts = site.posts | where: 'title',lookup_text -%}
+                {%- assign result_pages = site.pages | where: 'title',lookup_text -%}
+                {%- assign result_notes = site.notes | where: 'fileName',lookup_text -%}
+
+                {%- assign internal_aliases = internal_aliases | append: link_joiner_delimiter | append: link_parts[1] -%}
+                {%- assign internal_links = internal_links | append: link_joiner_delimiter | append: lookup_text -%}
+                {%- assign internal_urls = internal_urls | append: link_joiner_delimiter | append: result_posts[0].url | append: result_pages[0].url | append: result_notes[0].url -%}
+            {%- endif -%}
+        {%- endfor -%}
+
+        {%- assign content_array = content | split: '((' -%}
+        {%- for item in content_array -%}
+            {%- if forloop.index > 1 -%}
+                {%- assign itemparts = item | split: '))' -%}
                 {%- assign external_link = itemparts[0] | split:external_link_delimiter -%}
                 {%- assign sidenote = itemparts[0] | split:sidenote_delimiter -%}
-            
-                {%- if external_link[1] == nil -%}
-                    {%- assign result_posts = site.posts | where: 'title',itemparts[0] -%}
-                    {%- assign result_pages = site.pages | where: 'title',itemparts[0] -%}
-                    {%- assign internal_links = internal_links | append: link_joiner_delimiter | append: internal_link -%}
-                    {%- assign internal_urls = internal_urls | append: link_joiner_delimiter | append: result_posts[0].url | append: result_pages[0].url -%}
-                {%- else -%}
+                {%- if external_link[1] != nil -%}
                     {%- assign external_links = external_links | append: link_joiner_delimiter | append: external_link[0] -%}
                     {%- assign external_urls = external_urls | append: link_joiner_delimiter | append: external_link[1] -%}
                 {%- endif -%}
             {%- endif -%}
         {%- endfor -%}
-    
+        
         {%- assign internal_url_array = internal_urls | split:link_joiner_delimiter -%}
         {%- assign internal_link_array = internal_links | split:link_joiner_delimiter -%}
+        {%- assign internal_alias_array = internal_aliases | split:link_joiner_delimiter -%}
 
         {%- assign external_url_array = external_urls | split:link_joiner_delimiter -%}
         {%- assign external_link_array = external_links | split:link_joiner_delimiter -%}
+        {%- assign embedded_note_names_array = embedded_note_names | split:link_joiner_delimiter -%}
 
-    
         {%- assign replaced_content = content -%}
+        {%- for file_name in embedded_note_names_array -%}
+
+            {% assign note_to_transclude = site.notes | where: 'fileName',file_name %}
+            {% if note_to_transclude != empty %}
+                {% assign text_to_replace = '![[' | append: file_name | append: ']]' %}
+                {% assign excerpt = note_to_transclude[0].content | strip_html | truncate: 200 %}
+                {% assign replaced_text = '<div class="embed-note-container">' | append: excerpt | append: '</div>' %}
+                
+                {% assign replaced_content = replaced_content | replace: text_to_replace, replaced_text %}
+            {% endif %}
+            
+        {%- endfor -%}
+
+
         {%- for title in internal_link_array -%}
             {%- assign url = internal_url_array[forloop.index0] -%}
+            {%- assign alias = internal_alias_array[forloop.index0] -%}
+            {%- assign link_text = alias | default: title -%}
             {%- if url == nil -%}
-                {%- assign link_text = '<a class="stale-link" href="' | append: 'javascript:void(0)' | append: '">' | append: title | append: '</a>' -%}
+                {%- assign link_text = '<a class="stale-link" href="' | append: 'javascript:void(0)' | append: '">' | append: link_text | append: '</a>' -%}
             {%- elsif url == empty -%}
-                {%- assign link_text = '<a class="stale-link" href="' | append: 'javascript:void(0)' | append: '">' | append: title | append: '</a>' -%}
+                {%- assign link_text = '<a class="stale-link" href="' | append: 'javascript:void(0)' | append: '">' | append: link_text | append: '</a>' -%}
             {%- else -%}
-                    {%- assign post = site.posts | where: 'title',title -%}
-                    {%- assign excerpt = post[0].content | markdownify | strip_html | truncate: 200 | newline_to_br -%}
+                    {%- assign excerpt_soure = site.posts | where: 'title',title -%}
+                    {%- if excerpt_soure == empty -%}
+                        {%- assign excerpt_soure = site.notes | where: 'fileName',title -%}
+                    {%- endif -%}
+
+                    {%- assign excerpt = excerpt_soure[0].content | markdownify | strip_html | truncate: 200 | newline_to_br -%}
+                    
                     {%- if site.preferences.pagepreview.enabled -%}
-                        {%- assign link_text = '<span class="tooltip"><a href="' | append: url | append: '">' | append: title | append: '</a><span class="right bottom"><span class="tooltip-title">' | append: title | append: '</span><br/><span class="tooltip-excerpt">' | append: excerpt | append: '</span><i></i></span></span>' -%}
+                        {%- assign link_text = '<span class="tooltip"><a href="' | append: url | append: '">' | append: link_text | append: '</a><span class="right bottom"><span class="tooltip-title">' | append: title | append: '</span><br/><span class="tooltip-excerpt">' | append: excerpt | append: '</span><i></i></span></span>' -%}
                     {%- else -%}
-                        {%- assign link_text = '<span><a href="' | append: url | append: '">' | append: title | append: '</a></span>' -%}
+                        {%- assign link_text = '<span><a href="' | append: url | append: '">' | append: link_text | append: '</a></span>' -%}
                     {%- endif -%}
             {%- endif -%}
-            {%- assign bracket_link = '[[' | append: title | append: ']]' -%}
-            {%- assign replaced_content = replaced_content | replace: bracket_link,link_text -%}
+
+            {%- if alias != nil -%}
+                {%- assign alias_link = '[[' | append: title | append: "|" | append: alias | append: ']]' -%}
+                {%- assign replaced_content = replaced_content | replace: alias_link,link_text -%}
+            {%- else -%}
+                {%- assign bracket_link = '[[' | append: title | append: ']]' -%}
+                {%- assign replaced_content = replaced_content | replace: bracket_link,link_text -%}
+            {%- endif -%}
         {%- endfor -%}
 
         {%- assign sideNoteCounter = 0 -%}
@@ -114,9 +168,9 @@
 
                 {%- if url contains "transclude" -%}
                     {%- if site.preferences.sidenotes.enabled -%}
-                        {%- assign post = site.posts | where: 'title',title -%}
+                        {%- assign post = site.notes | where: 'fileName',title -%}
                         {%- assign excerpt = post[0].content | strip_html | truncate: 280 -%}
-                        {%- assign link_text = '<label for="' | append: url | append: '-' | append: sideNoteCounter | append: '" class="margin-toggle ' | append: sideNoteNum | append: ' ">' | append: toggleLabel | append: '</label><input type="checkbox" id="' | append: url | append: '-' | append: sideNoteCounter | append: '" class="margin-toggle"/><span class="' | append: noteType | append: '"><a href="' | append: post[0].url  | append: '"> <span style="background-color: #ffffc4; color: #555;">Transclusion</span><br/><b>' | append: title | append: '</b><br/>' | append: excerpt | append: '</a></span>' -%}
+                        {%- assign link_text = '<label for="' | append: url | append: '-' | append: sideNoteCounter | append: '" class="margin-toggle ' | append: sideNoteNum | append: ' ">' | append: toggleLabel | append: '</label><input type="checkbox" id="' | append: url | append: '-' | append: sideNoteCounter | append: '" class="margin-toggle"/><span class="' | append: noteType | append: '"><a href="' | append: post[0].url  | append: '"> <b>' | append: title | append: '</b><br/>' | append: excerpt | append: '</a></span>' -%}
                     {%- endif -%}
                 {%- else -%}
                     {%- if site.preferences.sidenotes.enabled -%}
@@ -133,7 +187,7 @@
             {%- else -%}
                 {%- assign link_text = '<a href="' | append: url | append: '">' | append: title | append: '</a>' -%}
             {%- endif -%}
-            {%- assign bracket_link = '[[' | append: title | append: external_link_delimiter | append: url | append: ']]' -%}
+            {%- assign bracket_link = '((' | append: title | append: external_link_delimiter | append: url | append: '))' -%}
             {%- assign replaced_content = replaced_content | replace: bracket_link,link_text -%}
         {%- endfor -%}
 

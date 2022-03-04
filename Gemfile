@@ -31,3 +31,6 @@ gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
 
 gem 'jekyll-sitemap'
 gem 'kramdown-math-katex'
+
+# Required for Ruby >3.0. See: https://github.com/jekyll/jekyll/issues/8523
+gem "webrick", "~> 1.7"
