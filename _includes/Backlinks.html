@@ -38,7 +38,6 @@
         {%- if note.url != page.url -%}
             {%- if note.content contains wiki_link_title -%}
                 {%- assign link_count = link_count | plus:1 -%}
-                {{ note.title }}
             {%- endif -%}
     {%- endif -%}
 {%- endfor -%}
