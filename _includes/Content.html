@@ -43,21 +43,27 @@
             {%- if forloop.index > 1 -%}
                 {%- assign itemparts = item | split:']]' -%}
                 {%- assign internal_link = itemparts[0] -%}
+
+                {%- assign link_parts = internal_link | split: internal_link_delimiter -%}
+                {%- assign lookup_text = link_parts[0] -%}
+
+                {%- assign result_posts = site.posts | where: 'title',lookup_text -%}
+                {%- assign result_pages = site.pages | where: 'title',lookup_text -%}
+                {%- assign result_notes = site.notes | where: 'fileName',lookup_text -%}
+
+                {%- assign internal_aliases = internal_aliases | append: link_joiner_delimiter | append: link_parts[1] -%}
+                {%- assign internal_links = internal_links | append: link_joiner_delimiter | append: lookup_text -%}
+                {%- assign internal_urls = internal_urls | append: link_joiner_delimiter | append: result_posts[0].url | append: result_pages[0].url | append: result_notes[0].url -%}
+            {%- endif -%}
+        {%- endfor -%}
+
+        {%- assign content_array = content | split: '((' -%}
+        {%- for item in content_array -%}
+            {%- if forloop.index > 1 -%}
+                {%- assign itemparts = item | split: '))' -%}
                 {%- assign external_link = itemparts[0] | split:external_link_delimiter -%}
                 {%- assign sidenote = itemparts[0] | split:sidenote_delimiter -%}
-
-                {%- if external_link[1] == nil -%}
-                    {%- assign link_parts = internal_link | split: internal_link_delimiter -%}
-                    {%- assign lookup_text = link_parts[0] -%}
-
-                    {%- assign result_posts = site.posts | where: 'title',lookup_text -%}
-                    {%- assign result_pages = site.pages | where: 'title',lookup_text -%}
-                    {%- assign result_notes = site.notes | where: 'fileName',lookup_text -%}
-
-                    {%- assign internal_aliases = internal_aliases | append: link_joiner_delimiter | append: link_parts[1] -%}
-                    {%- assign internal_links = internal_links | append: link_joiner_delimiter | append: lookup_text -%}
-                    {%- assign internal_urls = internal_urls | append: link_joiner_delimiter | append: result_posts[0].url | append: result_pages[0].url | append: result_notes[0].url -%}
-                {%- else -%}
+                {%- if external_link[1] != nil -%}
                     {%- assign external_links = external_links | append: link_joiner_delimiter | append: external_link[0] -%}
                     {%- assign external_urls = external_urls | append: link_joiner_delimiter | append: external_link[1] -%}
                 {%- endif -%}
@@ -71,9 +77,8 @@
         {%- assign external_url_array = external_urls | split:link_joiner_delimiter -%}
         {%- assign external_link_array = external_links | split:link_joiner_delimiter -%}
         {%- assign embedded_note_names_array = embedded_note_names | split:link_joiner_delimiter -%}
-    
-        {%- assign replaced_content = content -%}
 
+        {%- assign replaced_content = content -%}
         {%- for file_name in embedded_note_names_array -%}
 
             {% assign note_to_transclude = site.notes | where: 'fileName',file_name %}
@@ -180,7 +185,7 @@
             {%- else -%}
                 {%- assign link_text = '<a href="' | append: url | append: '">' | append: title | append: '</a>' -%}
             {%- endif -%}
-            {%- assign bracket_link = '[[' | append: title | append: external_link_delimiter | append: url | append: ']]' -%}
+            {%- assign bracket_link = '((' | append: title | append: external_link_delimiter | append: url | append: '))' -%}
             {%- assign replaced_content = replaced_content | replace: bracket_link,link_text -%}
         {%- endfor -%}
 
