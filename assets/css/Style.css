@@ -1448,4 +1448,12 @@ label.margin-toggle:not(.sidenote-number) {
 }
 }
 
-
+.embed-note-container {
+    border: 1px solid lightgray;
+    color: var(--primary-text-color);
+    font-family: var(--secondary-font-family);
+    font-size: 15px;
+    padding: 8px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+}

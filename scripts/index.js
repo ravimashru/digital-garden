@@ -51,8 +51,17 @@ async function run() {
     const images = new Set(Array.from(file.matter.content.matchAll(/!(\[\[.*\]\])/g)).map(e => e[0]));
     for (const match of images) {
       const imageName = match.substring(3, match.length-2);
-      fs.copyFileSync(path.join(OBSIDIAN_VAULT_PATH, MEDIA_FOLDER, imageName), path.join("assets", "img", imageName));
-      file.matter.content = file.matter.content.replaceAll(match, `<img src="/assets/img/${imageName}" />`);
+      const imagePath = path.join(OBSIDIAN_VAULT_PATH, MEDIA_FOLDER, imageName);
+      if (fs.existsSync(imagePath)) { 
+        fs.copyFileSync(imagePath, path.join("assets", "img", imageName));
+        file.matter.content = file.matter.content.replaceAll(match, `<img src="/assets/img/${imageName}" />`);
+      }
+    }
+
+    // Escape pipe character from wikilink aliases
+    const wikilinks = file.matter.content.matchAll(/\[\[.*\]\]/g);
+    for (const link of wikilinks) {
+      file.matter.content = file.matter.content.replaceAll(link[0], link[0].replace('|', '\\|'));
     }
 
     const fileName = file.filePath.split("/").pop();
