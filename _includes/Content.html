@@ -1,26 +1,28 @@
 <!-- Parse internal links, external links, transclusions etc and manipuate the content to reflect it accordingly -->
 {%- if page.content-type == "post" or page.content-type == "notes" -%}
-<div class="dates">
-    {% assign created_date = page.date | date_to_long_string %}
-    {% assign updated_date = page.updated | date_to_long_string %}
-    <p>Created: {{ created_date }}</p>
-    {%- if created_date != updated_date -%}
-    <p>Updated: {{ updated_date }}</p>
-    {%- endif -%}
-</div>
-<ul class="tags">
-    {%- if page.status != nil and page.status != empty -%}
-    <li><a href="javascript:void(0)" class="tag"><b>Status:</b> <i>{{page.status | capitalize}}</i></a></li>
-    {%- endif -%}
-    <!-- Loop through page categories and print them in tags -->
-    {%- for tag in page.tags -%}
+<div class="metadata-container">
+    <ul class="tags">
+        {%- if page.status != nil and page.status != empty -%}
+        <li><a href="javascript:void(0)" class="tag"><b>Status:</b> <i>{{page.status | capitalize}}</i></a></li>
+        {%- endif -%}
+        <!-- Loop through page categories and print them in tags -->
+        {%- for tag in page.tags -%}
         {%- if tag == 'Favorite' -%}
         <li><a href="/favorites/" class="tag">{{ tag }}</a></li>
         {%- else -%}
         <li><a href="/tags/#{{ tag }}" class="tag">{{ tag }}</a></li>
         {%- endif -%}
-    {%- endfor -%}
-</ul>
+        {%- endfor -%}
+    </ul>
+    <div class="dates">
+        {% assign created_date = page.date | date_to_long_string %}
+        {% assign updated_date = page.updated | date_to_long_string %}
+        <p>Created: {{ created_date }}</p>
+        {%- if updated_date != nil and created_date != updated_date -%}
+        <p>Updated: {{ updated_date }}</p>
+        {%- endif -%}
+    </div>
+</div>
 {%- endif -%}
 <div class="content">
 
@@ -166,9 +168,9 @@
 
                 {%- if url contains "transclude" -%}
                     {%- if site.preferences.sidenotes.enabled -%}
-                        {%- assign post = site.posts | where: 'title',title -%}
+                        {%- assign post = site.notes | where: 'fileName',title -%}
                         {%- assign excerpt = post[0].content | strip_html | truncate: 280 -%}
-                        {%- assign link_text = '<label for="' | append: url | append: '-' | append: sideNoteCounter | append: '" class="margin-toggle ' | append: sideNoteNum | append: ' ">' | append: toggleLabel | append: '</label><input type="checkbox" id="' | append: url | append: '-' | append: sideNoteCounter | append: '" class="margin-toggle"/><span class="' | append: noteType | append: '"><a href="' | append: post[0].url  | append: '"> <span style="background-color: #ffffc4; color: #555;">Transclusion</span><br/><b>' | append: title | append: '</b><br/>' | append: excerpt | append: '</a></span>' -%}
+                        {%- assign link_text = '<label for="' | append: url | append: '-' | append: sideNoteCounter | append: '" class="margin-toggle ' | append: sideNoteNum | append: ' ">' | append: toggleLabel | append: '</label><input type="checkbox" id="' | append: url | append: '-' | append: sideNoteCounter | append: '" class="margin-toggle"/><span class="' | append: noteType | append: '"><a href="' | append: post[0].url  | append: '"> <b>' | append: title | append: '</b><br/>' | append: excerpt | append: '</a></span>' -%}
                     {%- endif -%}
                 {%- else -%}
                     {%- if site.preferences.sidenotes.enabled -%}
