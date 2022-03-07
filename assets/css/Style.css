@@ -2,7 +2,7 @@
 layout: Stylesheet
 ---
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:wght@600|Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:300&display=swap');
 
 @import "/assets/css/highlight.css";
 /* Containers: Body, Container, Box, Main, Header, Content */ 
@@ -22,16 +22,18 @@ layout: Stylesheet
     --primary-box-shadow-color: hsl(var(--main-hue), 0%, 86.7%);
     --secondary-box-shadow-color: hsl(var(--main-hue), 0%, 81.2%);
 
-    --primary-text-color: hsl(var(--main-hue), 0%, 33.3%);
+    /* --primary-text-color: hsl(var(--main-hue), 0%, 33.3%); */
+    --primary-text-color: black;
     --secondary-text-color: hsl(var(--main-hue), 0%, 53.3%);
     --tertiary-text-color: hsl(var(--main-hue), 0%, 43.4%);
 
     --horizontal-rule-color: rgb(228, 227, 226);
-    --anchor-text-color: hsl(210, 52.8%, 51.0%);
+    /* --anchor-text-color: hsl(210, 52.8%, 51.0%); */
+    --anchor-text-color: #007cff;
     --anchor-link-color: hsl(205, 12%, 70%);
     --search-placeholder-color: hsl(var(--main-hue), 0%, 60.0%);
     --searchbox-shadow-color:  hsl(204, 63.0%, 78.8%);
-    --heading-font-family: 'Montserrat', serif;
+    --heading-font-family: 'Montserrat', sans-serif;
     --primary-font-family: 'Open Sans', sans-serif;
     --secondary-font-family: 'Open Sans', sans-serif;
 }
