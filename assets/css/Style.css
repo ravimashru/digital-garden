@@ -2,7 +2,7 @@
 layout: Stylesheet
 ---
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:400&display=swap');
 
 @import "/assets/css/highlight.css";
 /* Containers: Body, Container, Box, Main, Header, Content */ 
@@ -142,6 +142,7 @@ a, p, ul, li, ol, table, span, blockquote {
     font-family:   var(--secondary-font-family);
     font-size: 18px;  /* Let's set the font-size to something old-man friendly */
     line-height: 1.75em;
+    -webkit-font-smoothing: antialiased;
 }
 
 p a,
