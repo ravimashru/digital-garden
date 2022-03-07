@@ -29,7 +29,7 @@ layout: Stylesheet
 
     --horizontal-rule-color: rgb(228, 227, 226);
     /* --anchor-text-color: hsl(210, 52.8%, 51.0%); */
-    --anchor-text-color: #007cff;
+    --anchor-text-color: #004FA3;
     --anchor-link-color: hsl(205, 12%, 70%);
     --search-placeholder-color: hsl(var(--main-hue), 0%, 60.0%);
     --searchbox-shadow-color:  hsl(204, 63.0%, 78.8%);
