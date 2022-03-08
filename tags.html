@@ -48,6 +48,15 @@ Inspiration: https://raw.githubusercontent.com/silvae86/silvae86.github.io/maste
       <li id="category-content" style="padding-bottom: 0.6em; list-style: none;"><a href="{{item.url}}">{{ item.title }}</a></li>
     {% endfor %}
 {% endfor %}
+
+<h2 id="Untagged">Untagged</h2>
+{%- assign all_items = site.notes | concat: site.posts -%}
+{%- for item in all_items -%}
+  {%- if item.tags == empty -%}
+    <li id="category-content" style="padding-bottom: 0.6em; list-style: none;"><a href="{{item.url}}">{{ item.title }}</a></li>
+  {%- endif -%}
+{%- endfor -%}
+
 </div>
 <br/>
 <br/>
