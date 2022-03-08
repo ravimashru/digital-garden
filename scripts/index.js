@@ -15,7 +15,8 @@ async function run() {
   await Promise.all(unlinkPromises);
 
   // Step 2: Get all files from Obsidian vault that have frontmatter - publish: true
-  const OBSIDIAN_VAULT_PATH = path.join("C:\\Users\\rmashru\\iCloudDrive\\iCloud~md~obsidian\\zettelkasten");
+  // const OBSIDIAN_VAULT_PATH = path.join("C:\\Users\\rmashru\\iCloudDrive\\iCloud~md~obsidian\\zettelkasten");
+  const OBSIDIAN_VAULT_PATH = path.join("/Users/ravimashru/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten");
   const MEDIA_FOLDER = "Media";
 
   const vaultFiles = glob.sync("**/*", { cwd: OBSIDIAN_VAULT_PATH, nodir: true });
