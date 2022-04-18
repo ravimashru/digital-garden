@@ -1,5 +1,11 @@
 # My Digital Garden
 
+## Local Dev Setup
+
+1. Install Ruby ([Jekyll docs](https://jekyllrb.com/docs/installation/macos/))
+2. Run `bundle install`
+3. Start local server: `bundle exec jekyll serve`
+
 ## Pre-processing script
 - Selective publishing
   - `published: true` in frontmatter
