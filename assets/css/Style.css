@@ -186,16 +186,12 @@ img {
 
 code {
     font-family: Consolas, 'Courier New', Courier, monospace;
-    font-family: Consolas, 'Courier New', Courier, monospace;
     display: inline-block;
     overflow: auto !important;
     white-space: pre-line !important;       
     word-wrap: break-word !important;       
-    padding: 2px 2px  2px 2px;
     vertical-align:middle;
-    padding: 2px 2px 2px 2px;
-    border: 1px solid var(--secondary-border-color);
-    border-radius: 4px;
+    padding: 0 4px;
 }
 
 .regular-sans code {
@@ -237,6 +233,7 @@ blockquote:before {
 
 blockquote {
     padding: 10px;
+    border-left: 5px solid #e5e5e57b;
 }
 
 
@@ -252,12 +249,14 @@ cite {
 }
 
 blockquote p {
+    margin: 0;
     font-family: inherit;
     font-size: 15px;
 }
 
 table {
     border-radius: 5px;
+    border-collapse: collapse;
 }
 
 th, td {
