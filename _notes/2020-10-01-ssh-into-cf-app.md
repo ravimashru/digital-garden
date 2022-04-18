@@ -4,6 +4,7 @@ publish: true
 created: '2020-10-01'
 tags:
   - cloud-foundry
+  - devlog
 fileName: SSH into CF App
 updated: '2020-10-01'
 ---

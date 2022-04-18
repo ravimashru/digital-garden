@@ -4,6 +4,7 @@ publish: true
 created: '2019-12-12'
 tags:
   - abap
+  - devlog
 fileName: Clearing Internal Tables
 updated: '2019-12-12'
 ---
