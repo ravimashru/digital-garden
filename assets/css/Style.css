@@ -3,6 +3,7 @@ layout: Stylesheet
 ---
 
 @import url('https://fonts.googleapis.com/css?family=Inter:400,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=JetBrains+Mono&display=swap');
 
 @import "/assets/css/highlight.css";
 /* Containers: Body, Container, Box, Main, Header, Content */ 
@@ -141,7 +142,7 @@ h2 {
 a, p, ul, li, ol, table, span, blockquote {
     color: var(--primary-text-color);
     font-family:   var(--secondary-font-family);
-    font-size: 18px;  /* Let's set the font-size to something old-man friendly */
+    font-size: 16px;  /* Let's set the font-size to something old-man friendly */
     line-height: 1.75em;
     letter-spacing: -0.02em;
 }
@@ -226,19 +227,31 @@ img {
     color: var(--primary-text-color);
 } */
 
+code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 4px;
+}
+
 pre.highlight {
     overflow-x: scroll;
+    tab-size: 2; /* tab = 2 spaces */
+    background-color: rgba(0,0,0,0.03);
+    padding: 14px;
+}
+
+pre.highlight code {
+    background-color: unset;
+    padding: unset;
 }
 
 .highlighter-rouge code, .highlighter-rouge span {
-    font-family: Consolas, 'Courier New', Courier, monospace;
-    font-size: 18px;
+    /* font-family: Consolas, 'Courier New', Courier, monospace; */
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
     line-height: 1.75em;
     letter-spacing: -0.02em;
-}
-
-pre.highlight {
-    padding: 12px;
 }
 
 
