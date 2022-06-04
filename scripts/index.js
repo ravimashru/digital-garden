@@ -41,7 +41,9 @@ async function run() {
     file.matter.content = file.matter.content.split("%%ENDNOTE%%")[0];
 
     const documentTags = new Set(file.matter.data.tags);
-    const inlineTags = new Set(Array.from(file.matter.content.matchAll(/#([a-z-_/])+/g)).map(e => e[0]));
+    const contentsWithoutInlineCode = file.matter.content.replaceAll(/`.*`/g, "");
+    const contentsWithoutCodeBlocks = contentsWithoutInlineCode.replaceAll(/```.*```/g, "");
+    const inlineTags = new Set(Array.from(contentsWithoutCodeBlocks.matchAll(/\B#([a-z-_/])+/g)).map(e => e[0]));
     for (const match of inlineTags) {
       file.matter.content = file.matter.content.replaceAll(match, `<a href="/tags/${match}" class="tag">${match}</a>`);
       documentTags.add(match.substring(1));
