@@ -61,6 +61,11 @@ async function run() {
       }
     }
 
+    // Delete SRS information
+    delete file.matter.data["sr-due"];
+    delete file.matter.data["sr-interval"];
+    delete file.matter.data["sr-ease"];
+
     // Escape pipe character from wikilink aliases
     const wikilinks = file.matter.content.matchAll(/\[\[.*\]\]/g);
     for (const link of wikilinks) {
