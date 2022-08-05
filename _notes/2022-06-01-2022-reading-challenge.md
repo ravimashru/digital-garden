@@ -1,17 +1,17 @@
 ---
 title: 2022 Reading Challenge
 created: '2022-06-01'
+updated: '2022-07-31'
 publish: true
 tags:
-  - project
+  - index
 fileName: 2022 Reading Challenge
-updated: '2022-06-01'
 ---
 
 ## Currently Reading
 
 - [[book - How to Talk About Books You Havent Read\|How to Talk About Books You Havent Read]]
-- Where Good Ideas Come From
+- [[book - Where Good Ideas Come From\|Where Good Ideas Come From]]
 - [[book - One Minute To Do list\|One Minute To Do List]]
 - Build Data Science Applications with FastAPI
 - Typescript in 50 Lessons

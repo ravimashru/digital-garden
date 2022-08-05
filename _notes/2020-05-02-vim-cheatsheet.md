@@ -2,7 +2,7 @@
 title: vim cheatsheet
 publish: true
 created: '2020-05-02'
-updated: '2022-04-21'
+updated: '2022-07-22'
 tags:
   - cheatsheet
 fileName: vim cheatsheet
@@ -136,6 +136,11 @@ Open file/folder menu: press `m`.
 ## Splits
 
  - Move split to right - `C-W L`
+ - Move split to a new tab - `C-W T`
+
+ - Resize all windows to equal dimensions based on their splits - `C-W =`
+ - Resize height of current window - `C-W + / -`
+ - Resize width of current window - `C-W < / >`
 
 ## Highlighting
 

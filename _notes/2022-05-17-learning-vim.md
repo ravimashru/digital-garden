@@ -1,11 +1,11 @@
 ---
 title: Learning Vim
 created: '2022-05-17'
+updated: '2022-07-19'
 publish: true
 tags:
   - project
 fileName: Learning vim
-updated: '2022-05-17'
 ---
 
 Something for me to do along with [[Learning emacs]]. I'm comfortable with Vim, but I can dive deeper as a technical challenge for myself.
@@ -26,8 +26,8 @@ How I set up vim depends on what I want it to do for me. Here's what I need from
 - VCS integration (view lines added, changed, deleted in context)
 - View documentation of some code (i.e. docstrings in Python)
 - Type hints while typing code
-- Refactor (rename variables, move file and auto-update imports)
-- Show compile errors in real-time
+- Refactor (rename variables, move/rename files and auto-update imports)
+- Show linting and compiler errors inline
 - Open terminal/runtime for quick evaluations (e.g. Python terminal, NodeJS terminal, etc.)
 
 ---
@@ -37,9 +37,11 @@ How I set up vim depends on what I want it to do for me. Here's what I need from
 - [ ] Go through vimtutor and add important commands to [[vim cheatsheet]]
 - [ ] Create complete setup for Angular development (git, linting, autocomplete, etc.)
     - https://pragmaticpineapple.com/ultimate-vim-typescript-setup/
+    - Configure ESLint and Prettier
 - [ ] Try creating different configs for different languages (TS, Python), using modular configurations instead of a giant .vimrc file
     - [ ] https://vimways.org/2018/from-vimrc-to-vim/
 - [ ] Learn VimScript and tinker with existing plugins/create new ones
+- [ ] Find a Git client that works like VS Code’s client
 
 
 ## Notes

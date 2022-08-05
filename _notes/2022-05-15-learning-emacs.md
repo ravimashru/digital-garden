@@ -1,11 +1,11 @@
 ---
 title: Learning emacs
 created: '2022-05-15'
+updated: '2022-08-01'
 publish: true
 tags:
   - project
 fileName: Learning emacs
-updated: '2022-05-15'
 ---
 
 
@@ -26,15 +26,50 @@ A: Here are a few reasons:
     - [ ] Movie recommender frontend (Angular)
     - [ ] Meal planner backend/Things Web backend (Java)
     - [ ] Learn a bit of Go (Go, obviously)
+- [ ] Configure ESLint and Prettier for TS projects
 - [ ] Try out org-mode
+    - [ ] Create PARA setup (Single file for all PARA? One file for each P, A, R and A? One file for each project/area/resource etc. and an index file merging all of them?)
+    - [ ] Read the org manual (https://orgmode.org/manual/Summary.html)
+    - [ ] Read org guide (https://orgmode.org/orgguide.pdf)
+- [ ] Pilot org-roam for work knowledge base
+    - [ ] Read through Org roam manual (https://www.orgroam.com/manual.html)
+    - [ ] Different slip boxes (main, reference, drafts)
+    - [ ] Spaced repetition for learning
+    - [ ] shortcut to reorder title (and everything below it)?
+    - [ ] Explore code: https://github.com/org-roam/org-roam
 - [ ] Try key bindings that don't cause RSI (spacemacs, doom, evil mode etc.)
 - [ ] Learn elisp and tinker with emacs and plugins/create plugins
+
+## Plugins
+
+- Tree-like file explorer
+    - dired-sidebar
+    - emacs-neotree
+    - Other file explorers
+        - ibuffer-sidebar
+
 
 ## Things to try out
 
 - Git client (magit), inline git changes like VS Code
 - Linting and inline errors
 - Autocomplete, LSP integration
+- Org mode and org roam
+    - Move project list and project reference to org roam
+    - Keep next actions list in Google Tasks
+        - Accessible from phone
+        - Easy to convert email to task
+
+## Reading List
+
+- [How I Take Notes with Org-roam](https://jethrokuan.github.io/org-roam-guide/)
+- https://www.gnu.org/software/emacs/manual/html_node/eintr/On-Reading-this-Text.html
+- https://ccrma.stanford.edu/guides/package/emacs/emacs.html
+- https://www.reddit.com/r/emacs/comments/7i2alo/how_to_read_and_understand_gnu_emacs_source_code/
+- An Introduction to Programming in Emacs Lisp
+- https://pragmaticemacs.wordpress.com/
+
+
 
 ## Resources
 
@@ -98,7 +133,7 @@ Quit emacs - C-x, C-c
 
 Abort command - C-g
 
-### Files
+### Files and Buffers
 
 | Key     | Description                  |
 | ------- | ---------------------------- |
@@ -107,7 +142,9 @@ Abort command - C-g
 | C-x s   | Interactively save all files |
 | C-x C-b | List buffers                 |
 | C-x b   | Switch to buffer             |
-|         |                              |
+| C-x ->  | Next buffer                  |
+| C-x <-  | Previous buffer              |
+
 
 C-h m - view docs of current major mode
 
@@ -129,9 +166,13 @@ M-q - Re-fill paragraph
 | ----- | ------------------------------------------------ |
 | C-x 0 | Close current window                             |
 | C-x 1 | Close all other windows, keep window with cursor |
-| C-x 2 | Split screen into two windows                    |
+| C-x 2 | Split screen horizontally into two windows       |
+| C-x 3 | Split screen vertically into two windows         |
 | C-M-v | Scroll bottom window                             |
 | C-x o | Move cursor to other window                      |
+| C-x ^ | Make window taller                               |
+| C-x } | Make window wider                                |
+| C-x { | Make window narrower                             | 
 
 ### Frames
 
@@ -145,3 +186,17 @@ M-q - Re-fill paragraph
 ### Help
 
 C-x t - open tutorial
+
+### Dired
+
+i - insert contents of subdirectory later in buffer
+C-u C-SPC - return to previous position in buffer
+^ - return to parent directory in same buffer
+( - hide details
+C-u k - on subdirectory header line to remove it
+C-M-n - next subdirectory listing
+C-M-p - previous subdirectory listing
+
+Toggle subtrees
+- M-x dired-subtree-insert
+- M-x dired-subtree-remove
