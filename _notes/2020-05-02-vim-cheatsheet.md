@@ -2,12 +2,11 @@
 title: vim cheatsheet
 publish: true
 created: '2020-05-02'
-updated: '2022-07-22'
+updated: '2022-08-13'
 tags:
   - cheatsheet
 fileName: vim cheatsheet
 ---
-
 ## Get Help
 
 `:help` - open the help docs. `Ctrl+w - o` to open help docs in full screen.
@@ -15,6 +14,22 @@ fileName: vim cheatsheet
 `:helpgrep <term>` - find help for a specific term. Use `:cnext` and `:cprevious` to cycle through matches.
 
 `Ctrl-]` to follow a link, `Ctrl-t` to go back.
+
+## Plug (Plugin Manager)
+
+[Installation instructions](https://github.com/junegunn/vim-plug#installation)
+
+### Install plugins
+
+Use `:PlugInstall`.
+
+Note: `:PlugInstall` will only be available after `plug#start() ... plug#end()` blocks in have been added to `.vimrc`.
+
+### Deleting plugins
+
+1. Delete the `Plug` line(s) from the `.vimrc`.
+2. Source the `.vimrc` (`:source %` or `:so %` if `.vimrc` is open in buffer).
+3. Call `:PlugClean`.
 
 ## Cursor and files
 
