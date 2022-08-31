@@ -2,7 +2,7 @@
 title: vim cheatsheet
 publish: true
 created: '2020-05-02'
-updated: '2022-08-13'
+updated: '2022-08-15'
 tags:
   - cheatsheet
 fileName: vim cheatsheet
@@ -25,7 +25,7 @@ Use `:PlugInstall`.
 
 Note: `:PlugInstall` will only be available after `plug#start() ... plug#end()` blocks in have been added to `.vimrc`.
 
-### Deleting plugins
+### Delete plugins
 
 1. Delete the `Plug` line(s) from the `.vimrc`.
 2. Source the `.vimrc` (`:source %` or `:so %` if `.vimrc` is open in buffer).
@@ -45,35 +45,47 @@ Note: `:PlugInstall` will only be available after `plug#start() ... plug#end()` 
 
 ## Configurations
 
+### Tabs and Indentation
+
 `set cindent` - Enable "C style" indenting. Example: when you type `if (flag) {` and hit enter, the next line will be indented. When you type the closing `}` of the block, unindenting will happen.
 
 `set shiftwidth=N` - use N spaces for each step of indent when using `cindent`.
 
-`set tabstop=N` - number of white spaces for a single tab.
+`set tabstop=N` - number of white spaces for a single tab. Whenever spaces add up to the size of `tabstop`, they are turned into a single tab character. This can be prevented by setting `expanddtab`.
 
 `set expandtab` - replace tab character with spaces.
 
+`set softtabstop=N` - move N spaces when pressing `TAB` and erasing tabs. A value of `0` disables `softtabstop` and gives regular tab. A negative value means fall back to `shiftwidth`. (See [What is `softtabstop` used for?](https://vi.stackexchange.com/a/28017))
+
+### Syntax highlighting
+
 `syntax on` - enable syntax highlighting.
+
+### Splits
 
 `set splitbelow` - open split pane below open pane
 
 `set splitright` - open split pane to the right of open pane
 
-To check for configured value, use `?`, e.g. `:set tabstop?`.
+### Line numbers
 
 `set [no]number` - absolute line numbers, `set [no]rnu` - relative line numbers.
+
+### Others
+
+To check for configured value, use `?`, e.g. `:set tabstop?`.
 
 ## View whitespace characters
 
 Add to `.vimrc`:
 
-```
+```vim
 set listchars=eol:$,tab:>·,trail:~,extends:>,precedes:<,space:·
 ```
 
 Show the special characters using `:set list` and hide them using `:set nolist`
 
-## Indenting Commands
+## Indenting
 
 `==` - Correct indentation of the current line.
 
@@ -83,6 +95,25 @@ Show the special characters using `:set list` and hide them using `:set nolist`
 
 `<<` - Decrease indentation of the current line.
 
+## Folding
+
+[Reference](https://vim.fandom.com/wiki/Folding)
+
+`zc` - close fold
+
+`zo` - open fold
+
+`za` - toggle fold
+
+To operate on all nested folds, use capital letter after `z`, i.e. `zC`, `zO`, `zA`.
+
+`zr` - open one level of folds throughout buffer (regardless of cursor position)
+
+`zR` - open all folds in file
+
+`zm` - close one level of folds throughout buffer (regardless of cursor position)
+
+`zM` - close all folds in file
 
 ## Searching
 
@@ -98,7 +129,7 @@ After searching, an empty search pattern will repeat the last search. This works
 
 Source: [https://vim.fandom.com/wiki/Searching](https://vim.fandom.com/wiki/Searching)
 
-### Find a character `x` in the current line:
+### Find a character `x` in the current line
 
 - `f-x`: find the next occurence of the character
 - `F-x`: find the previous occurence of the character
@@ -118,6 +149,7 @@ Source: [https://stackoverflow.com/questions/2312844/vim-yank-into-search-regist
 `:%s/old/new/g` - replace in entire file
 
 `:%s/old/new/gc` - replace in entire file with prompt
+
 - y - substitute
 - n -skip
 - a - substitute this and all remaining matches
@@ -150,12 +182,12 @@ Open file/folder menu: press `m`.
 
 ## Splits
 
- - Move split to right - `C-W L`
- - Move split to a new tab - `C-W T`
+- Move split to right - `C-W L`
+- Move split to a new tab - `C-W T`
 
- - Resize all windows to equal dimensions based on their splits - `C-W =`
- - Resize height of current window - `C-W + / -`
- - Resize width of current window - `C-W < / >`
+- Resize all windows to equal dimensions based on their splits - `C-W =`
+- Resize height of current window - `C-W + / -`
+- Resize width of current window - `C-W < / >`
 
 ## Highlighting
 
@@ -165,15 +197,15 @@ Open file/folder menu: press `m`.
 
 ## Navigation
 
- - Go to definition of method under cursor - `gd`
- - Go to file under cursor - `gf`
- - Open file under cursor in new split - `C-W C-F`
- - Go back - `C-O`, Go forward - `C-I`
+- Go to definition of method under cursor - `gd`
+- Go to file under cursor - `gf`
+- Open file under cursor in new split - `C-W C-F`
+- Go back - `C-O`, Go forward - `C-I`
 
 ## FZF
 
- - Open file in horizontal split - `C-x`
- - open file in vertical split - `C-v`
+- Open file in horizontal split - `C-x`
+- open file in vertical split - `C-v`
 
 ## Inserting a character as it is
 
