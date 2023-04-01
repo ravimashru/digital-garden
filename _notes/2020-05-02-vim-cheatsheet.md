@@ -2,7 +2,7 @@
 title: vim cheatsheet
 publish: true
 created: '2020-05-02'
-updated: '2022-08-15'
+updated: '2022-04-01'
 tags:
   - cheatsheet
 fileName: vim cheatsheet
@@ -194,6 +194,7 @@ Open file/folder menu: press `m`.
 - Highlight all occurences of word under cursor (`*`)
 - Highlight all occurences of words that contain word under cursor (`g*`)
 - Hide all highlights - `:noh`
+- Highlight search results - `:set hlsearch`
 
 ## Navigation
 
@@ -201,6 +202,10 @@ Open file/folder menu: press `m`.
 - Go to file under cursor - `gf`
 - Open file under cursor in new split - `C-W C-F`
 - Go back - `C-O`, Go forward - `C-I`
+
+- Move line under cursor to the center of screen - `zz` (lowercase, uppercase `ZZ` is for save and exit)
+- Move line under cursor to top of screen - `zt`
+- Move line under cursor to bottom of screen - `zb`
 
 ## FZF
 
@@ -230,3 +235,4 @@ The `*` and `+` registers are used for the system clipboard. They can also be us
 Copy to one of these from one vim instance: `" * y`
 
 Paste from it in another vim instance: `" * p`
+

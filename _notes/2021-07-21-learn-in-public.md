@@ -1,10 +1,9 @@
 ---
 title: Learn in public
 created: '2021-07-21'
+updated: '2022-12-05'
 publish: true
-tags: []
 fileName: Learn in public
-updated: '2021-07-21'
 ---
 
 Learn by generating learning content.

@@ -2,11 +2,15 @@
 title: tmux cheatsheet
 publish: true
 created: '2021-05-18'
-updated: '2021-06-14'
+updated: '2021-02-23'
 tags:
   - cheatsheet
 fileName: tmux cheatsheet
 ---
+
+## Switch between sessions
+
+`Ctrl-b` + `s`
 
 ## Reordering tmux windows
 
@@ -22,6 +26,10 @@ Source: [https://superuser.com/a/343574/1143874](https://superuser.com/a/343574/
 To the left: `swap-window -t -1`
 
 To the right: `swap-window -t +1`
+
+### Move a window to a new session
+
+Go to the window to move, `Ctrl-b + :`, `move-window -t <name of target session>`
 
 ## Resizing tmux panes
 

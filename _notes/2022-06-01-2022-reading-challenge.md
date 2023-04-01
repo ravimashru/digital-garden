@@ -1,23 +1,12 @@
 ---
 title: 2022 Reading Challenge
 created: '2022-06-01'
-updated: '2022-07-31'
+updated: '2023-04-01'
 publish: true
-tags:
-  - index
 fileName: 2022 Reading Challenge
 ---
 
-## Currently Reading
 
-- [[book - How to Talk About Books You Havent Read\|How to Talk About Books You Havent Read]]
-- [[book - Where Good Ideas Come From\|Where Good Ideas Come From]]
-- [[book - One Minute To Do list\|One Minute To Do List]]
-- Build Data Science Applications with FastAPI
-- Typescript in 50 Lessons
-- Angular Cookbook
-- [[book - Range\|Range]]
-- Learning Test-Driven Development: A Polyglot Guide to Writing Uncluttered Code
 
 ### 2022 Read Harder Challenge
 
@@ -70,3 +59,8 @@ Books with TV adaptation
 5. Clean Architecture (Connor Wallace)
 6. Dr. Jekyll and Mr. Hyde
 7. On Writing Well: The Classic Guide to Writing Nonfiction
+8. [[book - How to Talk About Books You Havent Read\|How to Talk About Books You Havent Read]]
+9. [[book - Where Good Ideas Come From\|Where Good Ideas Come From]]
+10. [[book - One Minute To Do list\|One Minute To Do List]]
+11. Build Data Science Applications with FastAPI
+12. [[book - Range\|Range]]

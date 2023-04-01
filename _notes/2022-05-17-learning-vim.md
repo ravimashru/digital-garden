@@ -36,10 +36,10 @@ How I set up vim depends on what I want it to do for me. Here's what I need from
 
 - [ ] Go through vimtutor and add important commands to [[vim cheatsheet]]
 - [ ] Create complete setup for Angular development (git, linting, autocomplete, etc.)
-    - https://pragmaticpineapple.com/ultimate-vim-typescript-setup/
-    - Configure ESLint and Prettier
+	- https://pragmaticpineapple.com/ultimate-vim-typescript-setup/
+	- Configure ESLint and Prettier
 - [ ] Try creating different configs for different languages (TS, Python), using modular configurations instead of a giant .vimrc file
-    - [ ] https://vimways.org/2018/from-vimrc-to-vim/
+	- [ ] https://vimways.org/2018/from-vimrc-to-vim/
 - [ ] Learn VimScript and tinker with existing plugins/create new ones
 - [ ] Find a Git client that works like VS Code’s client
 

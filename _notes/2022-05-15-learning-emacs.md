@@ -1,7 +1,7 @@
 ---
 title: Learning emacs
 created: '2022-05-15'
-updated: '2022-08-01'
+updated: '2023-03-11'
 publish: true
 tags:
   - project
@@ -12,15 +12,19 @@ fileName: Learning emacs
 Q: Why learn emacs when I know a bit of Vim and heavily use VS Code already?  
 A: Here are a few reasons:
 
-- To develop [[book - Range\|Range]]
-- A new technical challenge
-- MAYBE eventually use org-mode (although I really like my current TickTick setup; maybe use emacs just for PKM instead of Obsidian?)
+- To develop [[book - Range\|Range]].
+- A new technical challenge.
+- To use as fully customizable PKM system (with org-roam) instead of Obsidian (which works great and allows customization through plugins, but is closed source and very difficult to get a license for at work).
 
 ---
 
 ## The Plan
 
 - [x] Go through emacs tutorial
+- [ ] Try out markdown mode
+    - https://github.com/jrblevin/markdown-mode
+    - https://github.com/jrblevin/markdown-mode-guide
+- [ ] Explore: making emacs org mode look nice (https://zzamboni.org/post/beautifying-org-mode-in-emacs/)
 - [ ] Try different projects
     - [ ] Movie recommender backend (Python)
     - [ ] Movie recommender frontend (Angular)
@@ -55,10 +59,10 @@ A: Here are a few reasons:
 - Linting and inline errors
 - Autocomplete, LSP integration
 - Org mode and org roam
-    - Move project list and project reference to org roam
-    - Keep next actions list in Google Tasks
-        - Accessible from phone
-        - Easy to convert email to task
+	- Move project list and project reference to org roam
+	- Keep next actions list in Google Tasks
+		- Accessible from phone
+		- Easy to convert email to task
 
 ## Reading List
 
@@ -76,6 +80,8 @@ A: Here are a few reasons:
 - [Emacs: The Best Python Editor?](https://realpython.com/emacs-the-best-python-editor/)
 
 ## Cheatsheet
+
+Open tutorial - `C-h t`
 
 ### Navigation
 
@@ -144,6 +150,7 @@ Abort command - C-g
 | C-x b   | Switch to buffer             |
 | C-x ->  | Next buffer                  |
 | C-x <-  | Previous buffer              |
+| C-x k   | Kill buffer                  | 
 
 
 C-h m - view docs of current major mode
@@ -162,17 +169,19 @@ M-q - Re-fill paragraph
 
 (i.e. splits)
 
-| Key   | Description                                      |
-| ----- | ------------------------------------------------ |
-| C-x 0 | Close current window                             |
-| C-x 1 | Close all other windows, keep window with cursor |
-| C-x 2 | Split screen horizontally into two windows       |
-| C-x 3 | Split screen vertically into two windows         |
-| C-M-v | Scroll bottom window                             |
-| C-x o | Move cursor to other window                      |
-| C-x ^ | Make window taller                               |
-| C-x } | Make window wider                                |
-| C-x { | Make window narrower                             | 
+| Key       | Description                                      |
+| --------- | ------------------------------------------------ |
+| C-x 0     | Close current window                             |
+| C-x 1     | Close all other windows, keep window with cursor |
+| C-x 2     | Split screen horizontally into two windows       |
+| C-x 3     | Split screen vertically into two windows         |
+| C-x 4 C-f | Find file in new window below                    |
+| C-x 5 C-f | Find file in new frame                           |
+| C-M-v     | Scroll bottom window                             |
+| C-x o     | Move cursor to other window                      |
+| C-x ^     | Make window taller                               |
+| C-x }     | Make window wider                                |
+| C-x {     | Make window narrower                             |
 
 ### Frames
 
@@ -183,9 +192,21 @@ M-q - Re-fill paragraph
 | C-x 5 2 | Create a new frame    |
 | C-x 5 0 | Remove selected frame | 
 
-### Help
+### Getting help
 
-C-x t - open tutorial
+- Getting help - `C-h ?`
+- Help for character sequence, e.g. C-p - `C-h c C-p`
+- More information about command - `C-h k C-p`
+- Describe a command - `C-h x`
+- Documentation of variables - `C-h v`
+- List all M-x commands with a given keyword - `C-h a`
+- Read included manual - `C-h i`
+- Open tutorial - `C-h t`
+
+Navigating info tree (e.g. in `C-h i`)
+- l - go to last node (go back after navigation)
+- ^ - go one level up in info tree
+- n - go to next node (next page in manual)
 
 ### Dired
 
@@ -200,3 +221,9 @@ C-M-p - previous subdirectory listing
 Toggle subtrees
 - M-x dired-subtree-insert
 - M-x dired-subtree-remove
+
+### Writing code
+
+- Insert comment at the end of current line - `M-;`
+- Comment out line - `C-x C-;`
+- Kill comment on current line - `C-u M-;`

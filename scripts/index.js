@@ -51,7 +51,9 @@ async function run() {
       documentTags.add(match.substring(1));
     }
 
-    file.matter.data.tags = Array.from(documentTags);
+    if (documentTags.size > 0) {
+      file.matter.data.tags = Array.from(documentTags);
+    }
 
     const images = new Set(Array.from(file.matter.content.matchAll(/!(\[\[.*\]\])/g)).map(e => e[0]));
     for (const match of images) {
