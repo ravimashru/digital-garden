@@ -2,11 +2,13 @@
 title: tmux cheatsheet
 publish: true
 created: '2021-05-18'
-updated: '2021-02-23'
+updated: '2023-05-14'
 tags:
   - cheatsheet
 fileName: tmux cheatsheet
 ---
+
+See pane numbers, `C-b, q`
 
 ## Switch between sessions
 
@@ -31,6 +33,15 @@ To the right: `swap-window -t +1`
 
 Go to the window to move, `Ctrl-b + :`, `move-window -t <name of target session>`
 
+## Moving a pane between windows
+
+To move a pane from window 2 to window 1:
+
+1. Switch to window 2.
+2. Mark the desired pane with `Ctrl-b, m`.
+3. Switch to window 1.
+4. Call `join-pane`: `Ctrl-b + :, join-pane`.
+
 ## Resizing tmux panes
 
 Hit `Ctrl + b` and then `:` to go to the tmux command prompt
@@ -53,6 +64,20 @@ Source: https://michaelsoolee.com/resize-tmux-panes
 ## Scrolling
 
 `ctrl + b` and then `[`. Hit `ESC` to quit scroll mode.
+
+## Open same tmux session in two terminals
+
+Opening a tmux session in a new window syncs the active window between the two terminals.
+
+To open another terminal instance, attach it to the same session, but see a different window inside it, you have to create a new session:
+
+```shell
+t new-session -t 'old session name or number'
+```
+
+Changing the active window in this new session won't cause the window open in the first terminal to change.
+
+Source: https://unix.stackexchange.com/questions/24274/attach-to-different-windows-in-session
 
 
 ## Resources
