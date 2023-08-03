@@ -2,7 +2,7 @@
 title: tmux cheatsheet
 publish: true
 created: '2021-05-18'
-updated: '2023-05-14'
+updated: '2021-02-23'
 tags:
   - cheatsheet
 fileName: tmux cheatsheet
