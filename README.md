@@ -6,6 +6,11 @@
 2. Run `bundle install`
 3. Start local server: `bundle exec jekyll serve`
 
+Extracting contents from Obsidian vault:
+1. Update `OBSIDIAN_VAULT_PATH` in `scripts/index.js`
+2. `nvm use 16`
+3. `npm start`
+
 ## Pre-processing script
 - Selective publishing
   - `published: true` in frontmatter
