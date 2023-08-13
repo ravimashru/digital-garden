@@ -10,5 +10,5 @@ fileName: Top of Mind
 
 [[2023 Reading Challenge]]
 
-![[Areas of Interest]]
+![[00 - Areas of Interest]]
 
