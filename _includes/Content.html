@@ -86,8 +86,8 @@
             {% assign note_to_transclude = site.notes | where: 'fileName',file_name %}
             {% if note_to_transclude != empty %}
                 {% assign text_to_replace = '![[' | append: file_name | append: ']]' %}
-                {% assign excerpt = note_to_transclude[0].content | strip_html | truncate: 200 %}
-                {% assign replaced_text = '<div class="embed-note-container">' | append: excerpt | append: '</div>' %}
+                {% assign excerpt = note_to_transclude[0].content | strip_html | truncate: 200 | newline_to_br %}
+                {% assign replaced_text = '<a class="embed-note-link" href="' | append: note_to_transclude[0].url | append: '"><span class="embed-note-container">' | append: excerpt | append: '</span></a>' %}
                 
                 {% assign replaced_content = replaced_content | replace: text_to_replace, replaced_text %}
             {% endif %}

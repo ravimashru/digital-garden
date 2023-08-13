@@ -1521,6 +1521,7 @@ label.margin-toggle:not(.sidenote-number) {
 }
 
 .embed-note-container {
+    display: block;
     border: 1px solid lightgray;
     color: var(--primary-text-color);
     font-family: var(--secondary-font-family);
@@ -1529,4 +1530,8 @@ label.margin-toggle:not(.sidenote-number) {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.12);
     border-radius: 5px;
     line-height: 2em;
+}
+
+a.embed-note-link:hover {
+    text-decoration: none !important;
 }
