@@ -229,7 +229,6 @@ Source: [https://vim.fandom.com/wiki/Simplifying_regular_expressions_using_magic
 ## Copying text across vim instances
 
 Copied text is stored in registers in vim. ((More about registers: [Vim registers: The basics and beyond](https://www.brianstorti.com/vim-registers/)::rmn))
-<!--SR:!2023-08-17,4,270-->
 
 The `*` and `+` registers are used for the system clipboard. They can also be used to copy text across vim instances.
 
