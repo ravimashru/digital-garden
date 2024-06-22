@@ -18,9 +18,9 @@ To extend the type definition, create a file at `@types/express/index.d.ts` from
 
 ```typescript
 declare namespace Express {
-  interface Request {
-    user: any;
-  }
+	interface Request {
+		user: any;
+	}
 }
 ```
 

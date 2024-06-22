@@ -2,7 +2,7 @@
 title: vim cheatsheet
 publish: true
 created: '2020-05-02'
-updated: '2022-04-01'
+updated: '2024-03-16'
 tags:
   - cheatsheet
 fileName: vim cheatsheet
@@ -121,6 +121,8 @@ To operate on all nested folds, use capital letter after `z`, i.e. `zC`, `zO`, `
 
 `n` to search again, `N` to search again in opposite direction.
 
+Most recently yanked text is stored in `0` and `"` registers. To search for yanked text: `/ Ctrl-r 0 <Enter>`.
+
 `%` to find matching bracket.
 
 ### Repeat search
@@ -145,6 +147,8 @@ Source: [https://stackoverflow.com/questions/2312844/vim-yank-into-search-regist
 ### Search and replace
 
 `:#,#s/old/new/g` - replace between line numbers (inclusive)
+
+`:.,+10s/old/new` - replace between current and 10 lines down (use `-n` for relative lines above current line).
 
 `:%s/old/new/g` - replace in entire file
 

@@ -2,7 +2,7 @@
 title: tmux cheatsheet
 publish: true
 created: '2021-05-18'
-updated: '2021-02-23'
+updated: '2023-12-17'
 tags:
   - cheatsheet
 fileName: tmux cheatsheet
@@ -15,6 +15,12 @@ See pane numbers, `C-b, q`
 `Ctrl-b` + `s`
 
 ## Reordering tmux windows
+
+### Move windows
+
+`:movew -r` - renumber all windows sequentially.
+
+`:movew [-s A] -t B` - renumber window A to B (`-s A` is optional; current window considered source if unspecified).
 
 ### Swap windows
 
