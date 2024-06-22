@@ -5,7 +5,7 @@ title: Is Obsidian the True Second Brain? ft. Nick Milo
 tags:
   - literature-note
   - type/video
-fileName: Is Obsidian the True Second Brain? ft
+fileName: Is Obsidian the True Second Brain
 updated: '2024-02-11'
 ---
 

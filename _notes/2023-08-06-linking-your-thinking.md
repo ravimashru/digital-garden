@@ -16,4 +16,4 @@ Workshop available for $1199.
 
 ---
 
-An example of a "map of contents" note being built live: [[Is Obsidian the True Second Brain? ft. Nick Milo]].
+An example of a "map of contents" note being built live: [[Is Obsidian the True Second Brain]].
