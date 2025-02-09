@@ -1,5 +1,5 @@
 ---
-title: Blog with the tone of a student
+title: Write with the tone of a student
 created: '2021-01-29'
 publish: true
 tags:
