@@ -5,10 +5,9 @@ updated: '2023-03-11'
 publish: true
 tags:
   - index
-fileName: Top of Mind
+fileName: HOME
 ---
 
-[[2023 Reading Challenge]]
 
-![[00 - Areas of Interest]]
+![[+Areas of Interest]]
 

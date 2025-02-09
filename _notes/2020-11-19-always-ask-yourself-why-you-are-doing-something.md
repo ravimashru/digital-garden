@@ -4,7 +4,7 @@ created: '2020-11-19'
 publish: true
 tags:
   - motivation
-fileName: Always ask yourself WHY you are doing something
+fileName: Have a strong WHY for doing something
 updated: '2020-11-19'
 ---
 

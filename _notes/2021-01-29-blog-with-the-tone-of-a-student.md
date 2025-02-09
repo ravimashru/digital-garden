@@ -4,7 +4,7 @@ created: '2021-01-29'
 publish: true
 tags:
   - writing
-fileName: Blog with the tone of a student
+fileName: Write with the tone of a student
 updated: '2021-01-29'
 ---
 

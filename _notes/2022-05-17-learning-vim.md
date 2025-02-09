@@ -5,10 +5,10 @@ updated: '2022-07-19'
 publish: true
 tags:
   - project
-fileName: Learning vim
+fileName: Learn Vim
 ---
 
-Something for me to do along with [[Learning emacs]]. I'm comfortable with Vim, but I can dive deeper as a technical challenge for myself.
+Something for me to do along with [[Learn emacs]]. I'm comfortable with Vim, but I can dive deeper as a technical challenge for myself.
 
 Whenever I say vim, I actually mean neo-vim, because:
 - Neo-vim is more extensible

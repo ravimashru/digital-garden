@@ -5,7 +5,7 @@ updated: '2023-03-11'
 publish: true
 tags:
   - project
-fileName: Learning emacs
+fileName: Learn emacs
 ---
 
 
@@ -35,6 +35,7 @@ A: Here are a few reasons:
     - [ ] Create PARA setup (Single file for all PARA? One file for each P, A, R and A? One file for each project/area/resource etc. and an index file merging all of them?)
     - [ ] Read the org manual (https://orgmode.org/manual/Summary.html)
     - [ ] Read org guide (https://orgmode.org/orgguide.pdf)
+    - [ ] Fill out [[org mode cheatsheet]]
 - [ ] Pilot org-roam for work knowledge base
     - [ ] Read through Org roam manual (https://www.orgroam.com/manual.html)
     - [ ] Different slip boxes (main, reference, drafts)
