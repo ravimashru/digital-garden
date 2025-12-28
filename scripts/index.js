@@ -8,6 +8,8 @@ const glob = require("glob");
 const matter = require("gray-matter");
 const slugify = require("slugify");
 
+const { extractFileNameWithoutExtension } = require("./file-name-extractor");
+
 async function run() {
   // Step 1: Clear the _notes folder
   const files = await readdir("_notes");
@@ -16,7 +18,7 @@ async function run() {
 
   // Step 2: Get all files from Obsidian vault that have frontmatter - publish: true
   // const OBSIDIAN_VAULT_PATH = path.join("C:\\Users\\rmashru\\iCloudDrive\\iCloud~md~obsidian\\zettelkasten");
-  const OBSIDIAN_VAULT_PATH = path.join("/Users/ravimashru/Library/Mobile Documents/iCloud~md~obsidian/Documents/zettelkasten");
+  const OBSIDIAN_VAULT_PATH = path.join("/mnt/d/zettelkasten-local-copy");
   const MEDIA_FOLDER = "Media";
 
   const vaultFiles = glob.sync("**/*", { cwd: OBSIDIAN_VAULT_PATH, nodir: true });
@@ -77,7 +79,7 @@ async function run() {
     }
 
     const fileName = file.filePath.split("/").pop();
-    const fileNameWithoutExtension = fileName.split(".")[0];
+    const fileNameWithoutExtension = extractFileNameWithoutExtension(fileName);
     file.matter.data.fileName = fileNameWithoutExtension;
 
     return file;

@@ -3,7 +3,7 @@ title: Learn in public
 created: '2021-07-21'
 updated: '2022-12-05'
 publish: true
-fileName: Learn in public
+fileName: 1.1d1 Learn in public
 ---
 
 Learn by generating learning content.

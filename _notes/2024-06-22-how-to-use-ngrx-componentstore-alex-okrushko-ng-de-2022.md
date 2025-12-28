@@ -4,7 +4,7 @@ created: '2024-06-22'
 title: How to use NgRx ComponentStore? - Alex Okrushko NG-DE 2022
 tags:
   - type/video
-fileName: How to use NgRx ComponentStore? - Alex Okrushko NG-DE 2022
+fileName: How to use NgRx ComponentStore - Alex Okrushko NG-DE 2022
 updated: '2024-06-22'
 ---
 URL: https://www.youtube.com/watch?v=xPmtsD5LRqQ

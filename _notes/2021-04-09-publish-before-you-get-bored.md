@@ -4,7 +4,7 @@ created: '2021-04-09'
 publish: true
 tags:
   - writing
-fileName: The secret to good writing is to publish it before you get bored of it
+fileName: 1.1d2 The secret to good writing is to publish it before you get bored of it
 updated: '2021-04-09'
 ---
 

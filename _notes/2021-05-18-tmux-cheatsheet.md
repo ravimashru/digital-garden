@@ -2,7 +2,7 @@
 title: tmux cheatsheet
 publish: true
 created: '2021-05-18'
-updated: '2023-12-17'
+updated: '2025-05-01'
 tags:
   - cheatsheet
 fileName: tmux cheatsheet
@@ -66,6 +66,16 @@ Use the `resize-pane` command. Examples:
 ```
 
 Source: https://michaelsoolee.com/resize-tmux-panes
+
+## Navigating between panes using vi key bindings
+
+```
+setw -g mode-keys vi
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+```
 
 ## Scrolling
 

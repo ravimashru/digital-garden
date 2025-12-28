@@ -4,7 +4,7 @@ created: '2020-11-19'
 publish: true
 tags:
   - motivation
-fileName: Have a strong WHY for doing something
+fileName: 1.6 Have a strong WHY for doing something
 updated: '2020-11-19'
 ---
 
