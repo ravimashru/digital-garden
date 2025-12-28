@@ -34,3 +34,6 @@ Extracting contents from Obsidian vault:
 - [ ] Handle `[[...#header]]` wikilinks
 - [ ] Handle `[[...#header|alias]]` wikilinks
 - [ ] Distinuish between internal and external links
+- [ ] Render frontmatter
+  - [ ] Strip out all frontmatter on publish.
+  - [ ] Create central allowlist of properties to render.

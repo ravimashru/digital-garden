@@ -59,8 +59,8 @@ Books with TV adaptation
 5. Clean Architecture (Connor Wallace)
 6. Dr. Jekyll and Mr. Hyde
 7. On Writing Well: The Classic Guide to Writing Nonfiction
-8. [[book - How to Talk About Books You Havent Read\|How to Talk About Books You Havent Read]]
-9. [[book - Where Good Ideas Come From\|Where Good Ideas Come From]]
+8. [[How to Talk About Books You Havent Read\|How to Talk About Books You Havent Read]]
+9. [[Where Good Ideas Come From]]
 10. [[book - One Minute To Do list\|One Minute To Do List]]
 11. Build Data Science Applications with FastAPI
 12. [[book - Range\|Range]]
